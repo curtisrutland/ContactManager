@@ -38,7 +38,11 @@ export class Contact implements IContact {
     email: string;
     alternateEmail: string;
     notes: Note[];
-    constructor(contact: IContact) {
+    constructor(private _base: IContact) {
+        this.fill(_base);
+    }
+
+    fill(contact: IContact) {
         this.id = contact.id;
         this.createdOn = contact.createdOn;
         this.modifiedOn = contact.modifiedOn;
@@ -56,6 +60,10 @@ export class Contact implements IContact {
         this.email = contact.email;
         this.alternateEmail = contact.alternateEmail;
         this.notes = contact.notes.map(note => new Note(note));
+    }
+
+    toIContact(): IContact {
+        return JSON.parse(JSON.stringify(this));
     }
 
     get fullName() { return `${this.lastName}, ${this.firstName}`; }

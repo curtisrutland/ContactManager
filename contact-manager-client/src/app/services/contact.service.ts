@@ -1,15 +1,21 @@
 import { Injectable } from "@angular/core";
-import { Headers, Http } from "@angular/http";
+import { Headers, Http, RequestOptions } from "@angular/http";
 import { Observable } from "rxjs/Observable";
 import "../extensions/rxjs-extensions";
 import { Contact, IContact } from "../models/contact";
 import { environment } from "../../environments/environment";
-import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
+import { EditContactComponent } from "../components/edit-contact/edit-contact.component";
+import { IState } from "../models/state";
 
 @Injectable()
 export class ContactService {
     private get baseUrl() { return environment.apiBaseUrl; }
-    constructor(private http: Http) { }
+    constructor(private http: Http) {
+        this.loadStates();
+    }
+
+    states$: Observable<IState[]>;
 
     countPages(): Observable<number> {
         let url = `${this.baseUrl}/contacts/countpages`;
@@ -21,7 +27,14 @@ export class ContactService {
         return this.http.get(url).map(r => r.json().map(item => new Contact(item)));
     }
 
-    showEditContactModal(contact: Contact) {
-        
+    updateContact(contact: Contact): Promise<{}> {
+        let url = `${this.baseUrl}/contacts/${contact.id}`;
+        let headers = new Headers({ "Content-Type": "application/json" });
+        return this.http.put(url, JSON.stringify(contact), new RequestOptions({headers: headers})).toPromise();
+    }
+
+    loadStates() {
+        let url = `${this.baseUrl}/states`;
+        this.states$ = this.http.get(url).map(r => r.json());
     }
 } 

@@ -5,6 +5,8 @@ import { HttpModule } from '@angular/http';
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { AppRouterModule } from "./modules/approuter.module";
+import { TextMaskModule } from 'angular2-text-mask';
+
 import { ContactService } from "./services/contact.service";
 
 import { AppComponent } from './app.component';
@@ -27,7 +29,8 @@ import { EditContactComponent } from './components/edit-contact/edit-contact.com
     HttpModule,
     NgbModule.forRoot(),
     ToastModule,
-    AppRouterModule
+    AppRouterModule,
+    TextMaskModule
   ],
   providers: [ContactService],
   bootstrap: [AppComponent]

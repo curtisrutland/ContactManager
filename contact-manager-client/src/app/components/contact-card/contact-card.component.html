@@ -2,7 +2,14 @@
   <div class="card-block">
     <h4 class="card-title">{{contact.fullName}}</h4>
     <h6 class="card-subtitle text-muted" *ngIf="contact.phoneNumber != null">{{contact.phoneNumber}}</h6>
-    <!--<h6 class="card-subtitle text-muted" *ngIf="contact.email != null">{{contact.email}}</h6>-->
     <p class="card-text text-muted" *ngIf="contact.email != null">{{contact.email}}</p>
+    <p class="card-text">
+      <a class="card-link" href="javascript:void(0)" (click)="details()">
+        <i class="fa fa-address-card-o"></i> Details
+      </a>
+      <a class="card-link" href="javascript:void(0)" (click)="edit()">
+        <i class="fa fa-pencil"></i> Edit
+      </a>
+    </p>
   </div>
 </div>

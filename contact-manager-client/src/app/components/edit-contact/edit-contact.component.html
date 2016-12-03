@@ -8,14 +8,14 @@
   <form>
     <div class="form-group row">
       <label for="firstName" class="col-sm-2 col-form-label">Name</label>
-      <div class="col-sm-5">
-        <input type="text" class="form-control" name="firstName" placeholder="First Name" [(ngModel)]="contact.firstName">
+      <div class="col-sm-5" [class.has-danger]="validationResults.firstName">
+        <input type="text" [focus]="focusEventEmitter" class="form-control" name="firstName" placeholder="First Name" [(ngModel)]="contact.firstName">
       </div>
-      <div class="col-sm-5">
+      <div class="col-sm-5" [class.has-danger]="validationResults.lastName">
         <input type="text" class="form-control" name="lastName" placeholder="Last Name" [(ngModel)]="contact.lastName">
       </div>
     </div>
-    <div class="form-group row">
+    <div class="form-group row"  [class.has-danger]="validationResults.addressLine1">
       <label for="addressLine1" class="col-sm-2 col-form-label">Address</label>
       <div class="col-sm-10">
         <input type="text" class="form-control" name="addressLine1" placeholder="Street Address" [(ngModel)]="contact.addressLine1">
@@ -27,15 +27,15 @@
       </div>
     </div>
     <div class="form-group row">
-      <div class="offset-sm-2 col-sm-4">
+      <div class="offset-sm-2 col-sm-4" [class.has-danger]="validationResults.city">
         <input type="text" class="form-control" name="city" placeholder="City" [(ngModel)]="contact.city">
       </div>
-      <div class="col-sm-3">
+      <div class="col-sm-3"  [class.has-danger]="validationResults.state">
         <select name="state" class="form-control" [(ngModel)]="contact.state">
           <option *ngFor="let state of (contactService.states$ | async)" [value]="state.abbreviation">{{state.state}}</option>
         </select>
       </div>
-      <div class="col-sm-3">
+      <div class="col-sm-3"  [class.has-danger]="validationResults.zip">
         <input type="text" class="form-control" name="zip" placeholder="Zip Code" [(ngModel)]="contact.zip">
       </div>
     </div>

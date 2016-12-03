@@ -18,6 +18,8 @@ export interface IContact {
     email: string;
     alternateEmail: string;
     notes: INote[];
+    createdOnText: string;
+    modifiedOnText: string;
 }
 
 export class Contact implements IContact {
@@ -38,8 +40,11 @@ export class Contact implements IContact {
     email: string;
     alternateEmail: string;
     notes: Note[];
-    constructor(private _base: IContact) {
-        this.fill(_base);
+    createdOnText: string;
+    modifiedOnText: string;
+    constructor(private _base?: IContact) {
+        if(_base)
+            this.fill(_base);
     }
 
     fill(contact: IContact) {
@@ -60,6 +65,8 @@ export class Contact implements IContact {
         this.email = contact.email;
         this.alternateEmail = contact.alternateEmail;
         this.notes = contact.notes.map(note => new Note(note));
+        this.createdOnText = contact.createdOnText;
+        this.modifiedOnText = contact.modifiedOnText;
     }
 
     toIContact(): IContact {

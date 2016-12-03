@@ -14,6 +14,10 @@ import { ContactManagerComponent } from './components/contact-manager/contact-ma
 import { ContactCardComponent } from './components/contact-card/contact-card.component';
 import { DropToggleComponent } from './components/drop-toggle/drop-toggle.component';
 import { EditContactComponent } from './components/edit-contact/edit-contact.component';
+import { FocusDirective } from './directives/focus.directive';
+import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
+import { LinkPipe } from './pipes/link.pipe';
+import { NoteComponent } from './components/note/note.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,11 @@ import { EditContactComponent } from './components/edit-contact/edit-contact.com
     ContactManagerComponent,
     ContactCardComponent,
     DropToggleComponent,
-    EditContactComponent
+    EditContactComponent,
+    FocusDirective,
+    ContactDetailsComponent,
+    LinkPipe,
+    NoteComponent
   ],
   imports: [
     BrowserModule,

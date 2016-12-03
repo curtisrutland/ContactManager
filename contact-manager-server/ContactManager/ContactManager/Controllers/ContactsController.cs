@@ -13,7 +13,7 @@ namespace ContactManager.Controllers
     [RoutePrefix("api/contacts")]
     public class ContactsController : ApiController
     {
-        private const int PageSize = 50;
+        private const int PageSize = 3;
 
         private readonly ContactManagerContext _db = new ContactManagerContext();
 

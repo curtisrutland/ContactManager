@@ -1,8 +1,12 @@
 <div class="card">
   <div class="card-block">
     <h4 class="card-title">{{contact.fullName}}</h4>
-    <h6 class="card-subtitle text-muted" *ngIf="contact.phoneNumber != null">{{contact.phoneNumber}}</h6>
-    <p class="card-text text-muted" *ngIf="contact.email != null">{{contact.email}}</p>
+    <h6 class="card-subtitle text-muted" *ngIf="contact.phoneNumber != null">
+      <a href="{{contact.phoneNumber | link:'tel'}}">{{contact.phoneNumber}}</a>
+    </h6>
+    <p class="card-text text-muted" >
+      <a href="{{contact.email | link:'mailto'}}" *ngIf="contact.email != null">{{contact.email}}</a>
+    </p>
     <p class="card-text">
       <a class="card-link" href="javascript:void(0)" (click)="details()">
         <i class="fa fa-address-card-o"></i> Details
@@ -10,6 +14,9 @@
       <a class="card-link" href="javascript:void(0)" (click)="edit()">
         <i class="fa fa-pencil"></i> Edit
       </a>
+      <a class="card-link text-danger" href="javascript:void(0)" (click)="delete()">
+        <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+      </a>
     </p>
   </div>
-</div>
+</div> 
